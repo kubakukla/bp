@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Person;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -24,8 +25,17 @@ class SiteController extends Controller
             return response()->json($validator->errors()->toArray(), 400);
         }
         else {
+            $img = $request->file('plik');
+            $img_raw = $img->getClientOriginalName();
 
-            $path = $request->file('plik')->store('pliki');
+            $img = $img->store('pliki');
+
+            $person = new Person();
+            $person->imie = filter_var($request->imie, FILTER_SANITIZE_STRING);
+            $person->nazwisko = filter_var($request->nazwisko, FILTER_SANITIZE_STRING);
+            $person->img = $img;
+            $person->img_raw = $img_raw;
+            $person->save();
 
             return response()->json(['text' => 'form sent successfully'], 201);
         }
