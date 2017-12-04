@@ -1,5 +1,4 @@
 $( "#form" ).submit(function( event ) {
-
     event.preventDefault();
 
     $.ajax({
@@ -18,7 +17,7 @@ $( "#form" ).submit(function( event ) {
         error: function (data) {
             $('.status').empty();
             $('#form').find("input[type=text], input[type=file]").val("");
-            $('.status').html("wypelnij poprawnie formularz");
+            $('.status').html("wypelnij poprawnie formularz " + data.status);
         },
         timeout: 10000
     });

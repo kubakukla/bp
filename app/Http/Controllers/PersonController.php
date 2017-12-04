@@ -6,10 +6,10 @@ use App\Person;
 use Illuminate\Http\Request;
 use Validator;
 
-class SiteController extends Controller
+class PersonController extends Controller
 {
     public function index() {
-        return view('site.index');
+        return view('person.index');
     }
 
     public function upload(Request $request) {

@@ -19,7 +19,7 @@
                         <tr>
                             <td>{{$person->imie}}</td>
                             <td>{{$person->nazwisko}}</td>
-                            <td><a href="{{ url('/storage/app/'.$person->img) }}">{{$person->img_raw}}</a></td>
+                            <td><a href="{{ route('images', ['id' => $person->id, 'name' => $person->img_raw])  }}">{{$person->img_raw}}</a></td>
                         </tr>
                         @endforeach
                     </table>

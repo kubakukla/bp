@@ -11,11 +11,11 @@
 |
 */
 
-Route::get('/', 'SiteController@index');
-Route::post('/upload', 'SiteController@upload');
+Route::get('/', 'PersonController@index');
+Route::post('/upload', 'PersonController@upload');
 
 Auth::routes();
 
 Route::get('/admin', 'AdminController@index')->name('admin');
 
-Route::get('images/{id}/{name}', 'ImageController@show')->middleware('auth');
+Route::get('images/{id}/{name}', 'ImageController@show')->middleware('auth')->name('images');

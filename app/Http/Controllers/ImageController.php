@@ -18,10 +18,13 @@ class ImageController extends Controller
         $select = Person::find($id);
         $contentType = Storage::mimeType($select->img);
 
-        if($select->img_raw === $name) { // aby użytkownik nie mający linku nie dostał się do obrazka po samym id
+        if($select->img_raw === basename($name)) { // aby użytkownik nie mający linku nie dostał się do obrazka po samym id
             $img = Storage::get($select->img);
 
             return response()->make($img, 200, ['content-type' => $contentType]);
+        }
+        else {
+            return response('Nor found', 404);
         }
     }
 }
